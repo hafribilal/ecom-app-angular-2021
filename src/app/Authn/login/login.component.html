@@ -1,15 +1,15 @@
 <div class="wrapper fadeInDown">
   <div id="formContent">
-    
+
     <div class="fadeIn first">
       <img src="assets/logo/shopp.png" id="icon" alt="User Icon" />
     </div>
 
     <!-- Login Form -->
     <form>
-      <input type="text" id="login" class="fadeIn second" name="login" placeholder="Enter your Login">
-      <input type="text" id="password" class="fadeIn third" name="login" placeholder="Enter your password">
-      <input type="submit" class="fadeIn fourth" value="Sign In">
+      <input type="text" id="login" class="fadeIn second" name="username" placeholder="Enter your Login" [(ngModel)]="username">
+      <input type="password" id="password" class="fadeIn third" name="password" placeholder="Enter your password" [(ngModel)]="password">
+      <input type="submit" class="fadeIn fourth" value="Sign In" (click)="login()">
     </form>
 
 
