@@ -23,13 +23,15 @@
     "bootstrap": "^5.0.1",
     "font-awesome": "^4.7.0",
     "jquery": "^3.6.0",
+    "json-parse-better-errors": "^1.0.2",
+    "npm": "^7.15.0",
     "popper": "^1.0.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.3"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.1102.5",
+    "@angular-devkit/build-angular": "^0.1102.13",
     "@angular/cli": "~11.2.5",
     "@angular/compiler-cli": "~11.2.6",
     "@types/jasmine": "~3.6.0",
