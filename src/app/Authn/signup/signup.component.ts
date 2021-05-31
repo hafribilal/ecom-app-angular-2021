@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Client } from 'src/app/models/client/client.module';
 import { IAuth } from 'src/app/services/i-auth';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
 	selector: 'app-signup',
@@ -13,16 +15,16 @@ export class SignupComponent implements OnInit {
 	client!: Client;
 	confirm_password!: string;
 	terms: boolean = false;
-	auth!: IAuth;
+	//auth!: IAuth;
 
-	constructor() {
+	constructor(private router: Router, private auth: AuthService) {
 		this.client = new Client()
 	}
 
 	ngOnInit(): void {
 		// this.client.prenom = "test";
 		// this.client.nom = "test";
-		// this.client.username = "test10";
+		// this.client.username = "test19";
 		// this.client.email = this.client.username + "@example.com";
 		// this.client.password = "testtest";
 		// this.confirm_password = "testtest";
@@ -33,10 +35,20 @@ export class SignupComponent implements OnInit {
 
 	async signup() {
 		if (this.client.password === this.confirm_password && this.terms) {
-			this.client = await this.auth.clientSignUp(this.client);
-			setTimeout(() => { console.log(this.client) }, 2500);
-		}
+			await this.auth.clientSignUp(this.client).then(
+				(client) => {
+					if (client.password === "xxxxxx")
+						this.router.navigate([`/login`, { username: client.username }]);
+					else alert("SignUp Refused");
+				}
+			);
 
+		} else {
+			if (!this.terms)
+				alert("please accept the terms to compleate the signup");
+			else
+				alert("please comfirm your password to compleate the signup");
+		}
 	}
 
 }

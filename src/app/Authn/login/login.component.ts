@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { map } from 'rxjs/operators';
 
@@ -10,17 +10,27 @@ import { map } from 'rxjs/operators';
 })
 export class LoginComponent implements OnInit {
 
-	constructor(private router: Router, private auth: AuthService) { }
+	constructor(
+		private router: Router,
+		private route: ActivatedRoute,
+		private auth: AuthService
+	) { }
 
 	username!: string;
 	password!: string;
 
 	ngOnInit(): void {
+		let username = this.route.snapshot.paramMap.get('username');
+		this.username = username ? username : "";
+
 	}
 
 	login() {
-		let token = this.auth.login(this.username, this.password);
-		console.log(token)
+		this.auth.login(this.username, this.password).then((result) => {
+			if (result) {
+				this.router.navigate([`/shop`]);
+			}
+		});
 	}
 
 }
