@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Compt } from '../compt/compt.module';
+import { PanierModule } from '../panier/panier.module';
 
 
 
@@ -12,6 +13,8 @@ import { Compt } from '../compt/compt.module';
 })
 export class Client extends Compt {
 	nom!: string;
-	prenom!: string
+	prenom!: string;
+	ville!: string;
 	tele!: string;
+	paniers!: PanierModule;
 }
