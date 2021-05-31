@@ -22,6 +22,8 @@ import { Checkout2Component } from './pages/checkout2/checkout2.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ProductCreateComponent } from './Admin/product-create/product-create.component';
 import { DashboardComponent } from './Admin/dashboard/dashboard.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { JWTInterceptor } from './_helpers/interceptors/jwt.interceptor';
 
 
 @NgModule({
@@ -51,7 +53,12 @@ import { DashboardComponent } from './Admin/dashboard/dashboard.component';
 		AppRoutingModule,
 		BrowserAnimationsModule,
 	],
-	providers: [],
-	bootstrap: [AppComponent]
+	providers: [
+		[{
+			provide: HTTP_INTERCEPTORS,
+			useClass: JWTInterceptor,
+			multi: true
+		}],],
+	bootstrap: [AppComponent,]
 })
 export class AppModule { }
