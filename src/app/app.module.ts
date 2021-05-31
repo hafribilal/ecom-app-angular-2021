@@ -20,6 +20,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CheckoutComponent } from './pages/checkout/checkout.component';
 import { Checkout2Component } from './pages/checkout2/checkout2.component';
 import { HomeComponent } from './pages/home/home.component';
+import { ProductCreateComponent } from './Admin/product-create/product-create.component';
+import { DashboardComponent } from './Admin/dashboard/dashboard.component';
+
 
 @NgModule({
 	declarations: [
@@ -36,7 +39,9 @@ import { HomeComponent } from './pages/home/home.component';
 		ChangepasswordComponent,
 		CheckoutComponent,
 		Checkout2Component,
-		HomeComponent
+		HomeComponent,
+		DashboardComponent,
+		ProductCreateComponent
 	],
 	imports: [
 		BrowserModule,
