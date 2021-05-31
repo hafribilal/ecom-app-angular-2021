@@ -3,13 +3,16 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { environment } from './../../environments/environment';
+import { environment } from 'src/environments/environment';
 import { Compt } from '../models/compt/compt.module';
+import { Client } from '../models/client/client.module';
+import { Admin } from '../models/admin/admin.module';
+import { IAuth } from './i-auth';
 
 @Injectable({
 	providedIn: 'root'
 })
-export class AuthService {
+export class AuthService implements IAuth {
 	private currentUserSubject!: BehaviorSubject<Compt>;
 	public currentUser!: Observable<Compt>;
 
@@ -25,22 +28,46 @@ export class AuthService {
 		return this.currentUserSubject.value;
 	}
 
-	login(username: string, password: string) {
+	async login(username: string, password: string): Promise<boolean> {
+		let OK = false;
 		const url = `${environment.AUTH_URL}/login`;
 		let body = {
 			'username': username,
 			'password': password
 		}
 		const options = { responseType: 'text' as 'json' };
-		return this.http.post<any>(url, body, options).toPromise().then(token => {
+		await this.http.post<any>(url, body, options).toPromise().then(token => {
 			// store jwt token in local storage to keep user logged in between page refreshes
-			localStorage.setItem(environment.JWT, token);
-		})
+			if (token) {
+				localStorage.setItem(environment.JWT, token);
+				OK = true;
+			}
+
+		});
+		return OK;
 	}
 
 	logout() {
 		// remove user from local storage to log user out
 		localStorage.removeItem('currentUser');
 		this.currentUserSubject.next(new Compt);
+	}
+
+	async adminSignUp(admin: Admin): Promise<Admin> {
+		const url = `${environment.AUTH_URL}/admin/signup`;
+		return this.http.post<any>(url, admin).toPromise().then(
+			user => {
+				return user;
+			}
+		);
+	}
+
+	async clientSignUp(client: Client): Promise<Client> {
+		const url = `${environment.AUTH_URL}/client/signup`;
+		return this.http.post<any>(url, client).toPromise().then(
+			user => {
+				return user;
+			}
+		);
 	}
 }
