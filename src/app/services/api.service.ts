@@ -4,11 +4,12 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
+import { IApi } from './i-api';
 
 @Injectable({
 	providedIn: 'root'
 })
-export class ApiService {
+export class ApiService implements IApi {
 
 	constructor(private http: HttpClient) { }
 
