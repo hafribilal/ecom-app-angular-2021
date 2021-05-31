@@ -13,5 +13,7 @@ export class ApiService implements IApi {
 
 	constructor(private http: HttpClient) { }
 
-
+	async getAll(url: string) {
+		return this.http.get(environment.API_URL + url).toPromise();
+	}
 }
