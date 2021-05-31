@@ -1,12 +1,16 @@
 import { Injectable } from '@angular/core';
+import { Compt } from '../models/compt/compt.module';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
-const AUTH_URL = "http://localhost:8080/ecom/auth";
-const API_URL = "http://localhost:8080/ecom/api";
+import { environment } from 'src/environments/environment';
 
 @Injectable({
 	providedIn: 'root'
 })
 export class ApiService {
 
-	constructor() { }
+	constructor(private http: HttpClient) { }
+
+
 }
