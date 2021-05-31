@@ -1,48 +1,61 @@
-
 <div class="signup-form">
-    <form action="/examples/actions/confirmation.php" method="post" class="form-horizontal">
-      	<div class="row">
-        	<div class="col-8 offset-4">
-				<h2>Sign Up</h2>
-			</div>	
-      	</div>			
-        <div class="form-group row">
-			<label class="col-form-label col-4">Full Name</label>
-			<div class="col-8">
-                <input type="text" class="form-control" name="username" required="required">
-            </div>        	
-        </div>
-		<div class="form-group row">
-			<label class="col-form-label col-4">User Name</label>
-			<div class="col-8">
-                <input type="email" class="form-control" name="email" required="required">
-            </div>        	
-        </div>
-		<div class="form-group row">
-			<label class="col-form-label col-4">Email Adress</label>
-			<div class="col-8">
-                <input type="password" class="form-control" name="password" required="required">
-            </div>        	
-        </div>
-		<div class="form-group row">
-			<label class="col-form-label col-4">City</label>
-			<div class="col-8">
-                <input type="password" class="form-control" name="confirm_password" required="required">
-            </div>        	
-        </div>
-        <div class="form-group row">
-			<label class="col-form-label col-4">Phone Number</label>
-			<div class="col-8">
-                <input type="password" class="form-control" name="confirm_password" required="required">
-            </div>        	
-        </div>
-		<div class="form-group row">
-			<div class="col-8 offset-4">
-				<p><label class="form-check-label"><input type="checkbox" required="required"> I accept the <a href="#">Terms of Use</a> &amp; <a href="#">Privacy Policy</a>.</label></p>
-				<button type="submit" class="btn btn-primary btn-lg">Sign Up</button>
-			</div>  
-		</div>		      
-    </form>
-	<div class="text-center">Already have an account? <a routerLink="/login">Login here</a></div>
+  <form action="/examples/actions/confirmation.php" method="post" class="form-horizontal">
+    <div class="row">
+      <div class="col-8 offset-4">
+        <h2>Sign Up</h2>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-form-label col-4">Full Name</label>
+      <div class="col-4 fchild">
+        <input type="text" class="form-control" [(ngModel)]="client.prenom" [ngModelOptions]="{standalone: true}">
+      </div>
+      <div class="col-4 lchild">
+        <input type="text" class="form-control" [(ngModel)]="client.nom" [ngModelOptions]="{standalone: true}">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-form-label col-4">Username</label>
+      <div class="col-8">
+        <input type="text" class="form-control" required="required" [(ngModel)]="client.username" [ngModelOptions]="{standalone: true}">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-form-label col-4">Email Adress</label>
+      <div class="col-8">
+        <input type="email" class="form-control" required="required" [(ngModel)]="client.email" [ngModelOptions]="{standalone: true}">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-form-label col-4">Password</label>
+      <div class="col-8">
+        <input type="password" class="form-control" required="required" [(ngModel)]="client.password" [ngModelOptions]="{standalone: true}">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-form-label col-4">Confirm</label>
+      <div class="col-8">
+        <input type="password" class="form-control" required="required" [(ngModel)]="confirm_password" [ngModelOptions]="{standalone: true}">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-form-label col-4">City</label>
+      <div class="col-8">
+        <input type="text" class="form-control" [(ngModel)]="client.ville" [ngModelOptions]="{standalone: true}">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-form-label col-4">Phone Number</label>
+      <div class="col-8">
+        <input type="tel" class="form-control" [(ngModel)]="client.tele" [ngModelOptions]="{standalone: true}">
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-8 offset-4">
+        <p><label class="form-check-label"><input type="checkbox" required="required" [(ngModel)]="terms" [ngModelOptions]="{standalone: true}"> I accept the <a href="#">Terms of Use</a> &amp; <a href="#">Privacy Policy</a>.</label></p>
+        <button type="submit" class="btn btn-primary btn-lg" (click)="signup()">Sign Up</button>
+      </div>
+    </div>
+  </form>
+  <div class="text-center">Already have an account? <a routerLink="/login">Login here</a></div>
 </div>
-
