@@ -1,19 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/services/auth.service';
 import { Client } from 'src/app/models/client/client.module';
+import { IAuth } from 'src/app/services/i-auth';
 
 @Component({
 	selector: 'app-signup',
 	templateUrl: './signup.component.html',
 	styleUrls: ['./signup.component.css']
 })
+
 export class SignupComponent implements OnInit {
 
 	client!: Client;
 	confirm_password!: string;
 	terms: boolean = false;
+	auth!: IAuth;
 
-	constructor(private auth: AuthService) {
+	constructor() {
 		this.client = new Client()
 	}
 
