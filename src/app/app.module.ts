@@ -24,6 +24,7 @@ import { ProductCreateComponent } from './Admin/product-create/product-create.co
 import { DashboardComponent } from './Admin/dashboard/dashboard.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JWTInterceptor } from './_helpers/interceptors/jwt.interceptor';
+import { SignUpComponent } from './Admin/sign-up/sign-up.component';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { JWTInterceptor } from './_helpers/interceptors/jwt.interceptor';
 		Checkout2Component,
 		HomeComponent,
 		DashboardComponent,
-		ProductCreateComponent
+		ProductCreateComponent,
+		SignUpComponent
 	],
 	imports: [
 		BrowserModule,
