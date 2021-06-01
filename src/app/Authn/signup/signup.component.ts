@@ -71,6 +71,7 @@ export class SignupComponent implements OnInit {
 		submit() {
 	
 		  if (this.form.status === 'VALID') {
+			  //lets check this console log what will print first
 		  console.log(this.form.value);
 		  }
 	
