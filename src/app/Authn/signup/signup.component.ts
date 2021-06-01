@@ -37,6 +37,7 @@ export class SignupComponent implements OnInit {
 		if (this.client.password === this.confirm_password && this.terms) {
 			await this.auth.clientSignUp(this.client).then(
 				(client) => {
+					console.log(client)
 					if (client.password === "xxxxxx")
 						this.router.navigate([`/login`, { username: client.username }]);
 					else alert("SignUp Refused");

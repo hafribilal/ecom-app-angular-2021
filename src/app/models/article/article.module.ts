@@ -10,10 +10,11 @@ import { Admin } from '../admin/admin.module';
 		CommonModule
 	]
 })
-export class ArticleModule {
+export class ArticleModule extends Object {
 	id!: number;
 	titre!: string;
 	description!: string;
+	price!: number;
 	type!: string;
 	stock!: number;
 	vendeur!: Admin;

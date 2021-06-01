@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
+import { ArticleModule } from 'src/app/models/article/article.module';
+import { Observable } from 'rxjs';
 
 @Component({
 	selector: 'app-listarticles',
@@ -8,6 +10,9 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class ListarticlesComponent implements OnInit {
 
+	//articles!: ArticleModule[];
+	articles!: ArticleModule[];
+
 	constructor(private api: ApiService) { }
 
 	ngOnInit(): void {
@@ -15,7 +20,7 @@ export class ListarticlesComponent implements OnInit {
 	}
 
 	async test() {
-		let result = await this.api.getAll("/articles/all");
-		console.log(result);
+		this.articles = await this.api.getAllArticles("/articles/all");
+		console.log(this.articles)
 	}
 }
