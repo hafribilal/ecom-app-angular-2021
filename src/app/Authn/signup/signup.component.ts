@@ -3,6 +3,8 @@ import { Client } from 'src/app/models/client/client.module';
 import { IAuth } from 'src/app/services/i-auth';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { CustomValidator } from 'src/app/validator/custom-validator';
 
 @Component({
 	selector: 'app-signup',
@@ -50,5 +52,28 @@ export class SignupComponent implements OnInit {
 				alert("please comfirm your password to compleate the signup");
 		}
 	}
+
+	form = new FormGroup({
+		nom: new FormControl('', [Validators.required]),
+		prenom: new FormControl('', [Validators.required]),
+		username: new FormControl('', [Validators.required]),
+		email: new FormControl('', [Validators.required,Validators.email]),
+		password: new FormControl('', [Validators.required]),
+		confirmpassword: new FormControl('', [Validators.required]),
+		city: new FormControl('', [Validators.required]),
+		phonenum: new FormControl('', [Validators.required, CustomValidator.ValidatePhone])
+		});
+	
+		get f() {
+		  return this.form.controls;
+		}
+	
+		submit() {
+	
+		  if (this.form.status === 'VALID') {
+		  console.log(this.form.value);
+		  }
+	
+		}
 
 }

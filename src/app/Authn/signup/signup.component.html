@@ -1,61 +1,109 @@
 <div class="signup-form">
-  <form action="/examples/actions/confirmation.php" method="post" class="form-horizontal">
-    <div class="row">
-      <div class="col-8 offset-4">
-        <h2>Sign Up</h2>
-      </div>
-    </div>
-    <div class="form-group row">
-      <label class="col-form-label col-4">Full Name</label>
-      <div class="col-4 fchild">
-        <input type="text" class="form-control" [(ngModel)]="client.prenom" [ngModelOptions]="{standalone: true}">
-      </div>
-      <div class="col-4 lchild">
-        <input type="text" class="form-control" [(ngModel)]="client.nom" [ngModelOptions]="{standalone: true}">
-      </div>
-    </div>
-    <div class="form-group row">
-      <label class="col-form-label col-4">Username</label>
-      <div class="col-8">
-        <input type="text" class="form-control" required="required" [(ngModel)]="client.username" [ngModelOptions]="{standalone: true}">
-      </div>
-    </div>
-    <div class="form-group row">
-      <label class="col-form-label col-4">Email Adress</label>
-      <div class="col-8">
-        <input type="email" class="form-control" required="required" [(ngModel)]="client.email" [ngModelOptions]="{standalone: true}">
-      </div>
-    </div>
-    <div class="form-group row">
-      <label class="col-form-label col-4">Password</label>
-      <div class="col-8">
-        <input type="password" class="form-control" required="required" [(ngModel)]="client.password" [ngModelOptions]="{standalone: true}">
-      </div>
-    </div>
-    <div class="form-group row">
-      <label class="col-form-label col-4">Confirm</label>
-      <div class="col-8">
-        <input type="password" class="form-control" required="required" [(ngModel)]="confirm_password" [ngModelOptions]="{standalone: true}">
-      </div>
-    </div>
-    <div class="form-group row">
-      <label class="col-form-label col-4">City</label>
-      <div class="col-8">
-        <input type="text" class="form-control" [(ngModel)]="client.ville" [ngModelOptions]="{standalone: true}">
-      </div>
-    </div>
-    <div class="form-group row">
-      <label class="col-form-label col-4">Phone Number</label>
-      <div class="col-8">
-        <input type="tel" class="form-control" [(ngModel)]="client.tele" [ngModelOptions]="{standalone: true}">
-      </div>
-    </div>
-    <div class="form-group row">
-      <div class="col-8 offset-4">
-        <p><label class="form-check-label"><input type="checkbox" required="required" [(ngModel)]="terms" [ngModelOptions]="{standalone: true}"> I accept the <a href="#">Terms of Use</a> &amp; <a href="#">Privacy Policy</a>.</label></p>
-        <button type="submit" class="btn btn-primary btn-lg" (click)="signup()">Sign Up</button>
-      </div>
-    </div>
-  </form>
-  <div class="text-center">Already have an account? <a routerLink="/login">Login here</a></div>
+
+    <form [formGroup]="form" (ngSubmit)="submit()" class="form-horizontal">
+      	<div class="row">
+        	<div class="col-8 offset-4">
+				<h2>Sign Up</h2>
+			</div>	
+      	</div>		
+
+        <div class="form-group row">
+			<label class="col-form-label col-4">Full Name</label>
+			<div class="col-4 fchild">
+                <input formControlName="nom" id="nom" type="text" class="form-control" name="nom" [(ngModel)]="client.nom" >
+				<div *ngIf="f.nom.touched && f.nom.invalid" class="alert alert-danger">
+					<div *ngIf="f.nom.errors != null && f.nom.errors.required"> lastName is required
+					</div>
+				</div>
+            </div>
+			<div class="col-4 fchild">
+                <input formControlName="prenom" id="prenom"type="text" class="form-control" name="prenom" [(ngModel)]="client.prenom" >
+			    <div *ngIf="f.prenom.touched && f.prenom.invalid" class="alert alert-danger">
+					<div *ngIf="f.prenom.errors != null && f.prenom.errors.required"> firstName is required
+					</div>
+				</div>
+            </div>           	
+        </div>
+
+		<div class="form-group row">
+			<label class="col-form-label col-4">User Name</label>
+			<div class="col-8">
+                <input formControlName="username" id="username" type="text" class="form-control" name="text" [(ngModel)]="client.username" >
+	            <div *ngIf="f.username.touched && f.username.invalid" class="alert alert-danger">
+					<div *ngIf="f.username.errors != null && f.username.errors.required"> userName is required
+					</div>
+				</div>
+            </div>        	
+        </div>
+
+		<div class="form-group row">
+			<label class="col-form-label col-4">Email Adress</label>
+			<div class="col-8">
+                <input formControlName="email" id="email"type="email" class="form-control" name="email" [(ngModel)]="client.email">  
+				<div *ngIf="f.email.touched && f.email.invalid" class="alert alert-danger">
+					<div *ngIf="f.email.errors != null && f.email.errors.required"> Email is required
+					</div>
+					<div *ngIf="f.email.errors != null && f.email.errors.email">email not valid
+					</div>
+				</div>
+            </div>        	
+        </div>
+
+		<div class="form-group row">
+			<label class="col-form-label col-4">Password</label>
+			<div class="col-8">
+                <input formControlName="password" id="password" type="text" class="form-control" name="password"  [(ngModel)]="client.password" >
+				<div *ngIf="f.password.touched && f.password.invalid" class="alert alert-danger">
+					<div *ngIf="f.password.errors != null && f.password.errors.required"> password is required
+					</div>
+				</div>
+            </div>        	
+        </div>
+
+		<div class="form-group row">
+			<label class="col-form-label col-4">Confirm Password</label>
+			<div class="col-8">
+                <input formControlName="confirmpassword" id="confirmpassword" type="text" class="form-control" name="text" [(ngModel)]="confirm_password" >
+				<div *ngIf="f.confirmpassword.touched && f.confirmpassword.invalid" class="alert alert-danger">
+					<div *ngIf="f.confirmpassword.errors != null && f.confirmpassword.errors.required"> You Should Conifrm Your Password
+					</div>
+				</div>
+            </div>        	
+        </div>
+
+		<div class="form-group row">
+			<label class="col-form-label col-4">City</label>
+			<div class="col-8">
+                <input formControlName="city" id="city" type="text" class="form-control" name="city"  [(ngModel)]="client.ville" >
+				<div *ngIf="f.city.touched && f.city.invalid" class="alert alert-danger">
+					<div *ngIf="f.city.errors != null && f.city.errors.required"> City is required
+					</div>
+				</div>
+            </div>        	
+        </div>
+
+        <div class="form-group row">
+			<label class="col-form-label col-4">Phone Number</label>
+			<div class="col-8">
+                <input formControlName="phonenum" id="phonenum" type="text" class="form-control" name="phonenum" [(ngModel)]="client.tele" >
+		        <div *ngIf="f.phonenum.touched && f.phonenum.invalid" class="alert alert-danger">
+					<div *ngIf="f.phonenum.errors != null && f.phonenum.errors.required"> Phone Number is required
+					</div>
+					<div *ngIf="f.phonenum.errors != null && f.phonenum.errors.phoneNumberInvalid"> Phone Number is invalid , enter 10 numbers
+					</div>
+				</div>
+            </div>        	
+        </div>
+
+		<div class="form-group row">
+			<div class="col-8 offset-4">
+				<p><label class="form-check-label"><input type="checkbox"  [(ngModel)]="terms" > I accept the <a href="#">Terms of Use</a> &amp; <a href="#">Privacy Policy</a>.</label></p>
+				<button type="submit" class="btn btn-primary btn-lg">Sign Up</button>
+			</div>  
+		</div>
+
+    </form>
+
+	<div class="text-center">Already have an account? <a routerLink="/login">Login here</a></div>
 </div>
+
