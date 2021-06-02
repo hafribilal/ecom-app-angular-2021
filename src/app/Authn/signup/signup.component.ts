@@ -24,15 +24,6 @@ export class SignupComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
-		// this.client.prenom = "test";
-		// this.client.nom = "test";
-		// this.client.username = "test19";
-		// this.client.email = this.client.username + "@example.com";
-		// this.client.password = "testtest";
-		// this.confirm_password = "testtest";
-		// this.client.ville = "testCity";
-		// this.client.tele = "0987654321";
-		// this.terms = true;
 	}
 
 	async signup() {
@@ -58,24 +49,24 @@ export class SignupComponent implements OnInit {
 		nom: new FormControl('', [Validators.required]),
 		prenom: new FormControl('', [Validators.required]),
 		username: new FormControl('', [Validators.required]),
-		email: new FormControl('', [Validators.required,Validators.email]),
+		email: new FormControl('', [Validators.required, Validators.email]),
 		password: new FormControl('', [Validators.required]),
 		confirmpassword: new FormControl('', [Validators.required]),
 		city: new FormControl('', [Validators.required]),
 		phonenum: new FormControl('', [Validators.required, CustomValidator.ValidatePhone])
-		});
-	
-		get f() {
-		  return this.form.controls;
+	});
+
+	get f() {
+		return this.form.controls;
+	}
+
+	submit() {
+
+		if (this.form.status === 'VALID') {
+			//lets check this console log what will print first
+			console.log(this.form.value);
 		}
-	
-		submit() {
-	
-		  if (this.form.status === 'VALID') {
-			  //lets check this console log what will print first
-		  console.log(this.form.value);
-		  }
-	
-		}
+
+	}
 
 }
