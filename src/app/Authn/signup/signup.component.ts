@@ -28,14 +28,14 @@ export class SignupComponent implements OnInit {
 
 	async signup() {
 
-			await this.auth.clientSignUp(this.client).then(
-				(client) => {
-					console.log(client)
-					if (client.password === "xxxxxx")
-						this.router.navigate([`/login`, { username: client.username }]);
-					else alert("SignUp Refused");
-				}
-			);
+		await this.auth.clientSignUp(this.client).then(
+			(client) => {
+				console.log(client)
+				if (client.password === "xxxxxx")
+					this.router.navigate([`/login`, { username: client.username }]);
+				else alert("SignUp Refused");
+			}
+		);
 	}
 
 	form = new FormGroup({
@@ -47,29 +47,6 @@ export class SignupComponent implements OnInit {
 		confirmpassword: new FormControl('', [Validators.required]),
 		city: new FormControl('', [Validators.required]),
 		phonenum: new FormControl('', [Validators.required, CustomValidator.ValidatePhone])
-<<<<<<< HEAD
-		});
-	
-		get f() {
-		  return this.form.controls;
-		}
-	
-		submit() {
-	
-		  if (this.form.status === 'VALID') {
-			  //lets check this console log what will print first
-			 this.client.email = this.form.value['email'];
-			 this.client.nom = this.form.value['nom'];
-			 this.client.prenom = this.form.value['prenom'];
-			 this.client.username = this.form.value['username'];
-			 this.client.password = this.form.value['password'];
-			 this.client.ville = this.form.value['city'];
-			 this.client.tele = this.form.value['phonenum'];
-			 this.signup();
-		  
-		  }
-	
-=======
 	});
 
 	get f() {
@@ -80,8 +57,15 @@ export class SignupComponent implements OnInit {
 
 		if (this.form.status === 'VALID') {
 			//lets check this console log what will print first
-			console.log(this.form.value);
->>>>>>> a10473187a06e2ed3eefbd87e063b35801579b11
+			this.client.email = this.form.value['email'];
+			this.client.nom = this.form.value['nom'];
+			this.client.prenom = this.form.value['prenom'];
+			this.client.username = this.form.value['username'];
+			this.client.password = this.form.value['password'];
+			this.client.ville = this.form.value['city'];
+			this.client.tele = this.form.value['phonenum'];
+			this.signup();
+
 		}
 
 	}
