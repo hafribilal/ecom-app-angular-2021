@@ -14,7 +14,19 @@ export class ApiService implements IApi {
 
 	constructor(private http: HttpClient) { }
 
-	async getAllArticles(url: string) {
-		return this.http.get<ArticleModule[]>(environment.API_URL + url).toPromise();
+	async getAll(url: string) {
+		return this.http.get<Array<any>>(environment.API_URL + url).toPromise();
+	}
+
+	async add(url: string, object: Object) {
+		return this.http.post<Object>(environment.API_URL + url, object).toPromise();
+	}
+
+	async update(url: string, object: Object) {
+		return this.http.put<Object>(environment.API_URL + url, object).toPromise();
+	}
+
+	async delete(url: string, object: Object) {
+		return this.http.delete<Object>(environment.API_URL + url).toPromise();
 	}
 }
