@@ -7,4 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'EcommPrj';
+  role = localStorage.getItem("USER_ROLE");
 }

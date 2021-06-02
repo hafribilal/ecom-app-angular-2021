@@ -36,7 +36,7 @@ export class SignupComponent implements OnInit {
 	}
 
 	async signup() {
-		if (this.client.password === this.confirm_password && this.terms) {
+
 			await this.auth.clientSignUp(this.client).then(
 				(client) => {
 					if (client.password === "xxxxxx")
@@ -44,13 +44,6 @@ export class SignupComponent implements OnInit {
 					else alert("SignUp Refused");
 				}
 			);
-
-		} else {
-			if (!this.terms)
-				alert("please accept the terms to compleate the signup");
-			else
-				alert("please comfirm your password to compleate the signup");
-		}
 	}
 
 	form = new FormGroup({
@@ -72,7 +65,15 @@ export class SignupComponent implements OnInit {
 	
 		  if (this.form.status === 'VALID') {
 			  //lets check this console log what will print first
-		  console.log(this.form.value);
+			 this.client.email = this.form.value['email'];
+			 this.client.nom = this.form.value['nom'];
+			 this.client.prenom = this.form.value['prenom'];
+			 this.client.username = this.form.value['username'];
+			 this.client.password = this.form.value['password'];
+			 this.client.ville = this.form.value['city'];
+			 this.client.tele = this.form.value['phonenum'];
+			 this.signup();
+		  
 		  }
 	
 		}

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +7,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  @Input()
+  role!:string;
+
+  constructor() { 
+   
+  }
 
   ngOnInit(): void {
+    let role = localStorage.getItem("USER_ROLE");
+    this.role=role?role:"";
+    if(!this.role){
+      localStorage.setItem("USER_ROLE","guest");
+    }
+    console.log(this.role)
   }
 
 }
