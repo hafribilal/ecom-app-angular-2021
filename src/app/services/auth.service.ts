@@ -55,7 +55,7 @@ export class AuthService implements IAuth {
 
 	async adminSignUp(admin: Admin): Promise<Admin> {
 		const url = `${environment.AUTH_URL}/admin/signup`;
-		return this.http.post<any>(url, admin).toPromise().then(
+		return this.http.post<Admin>(url, admin).toPromise().then(
 			user => {
 				return user;
 			}
@@ -64,7 +64,7 @@ export class AuthService implements IAuth {
 
 	async clientSignUp(client: Client): Promise<Client> {
 		const url = `${environment.AUTH_URL}/client/signup`;
-		return this.http.post<any>(url, client).toPromise().then(
+		return this.http.post<Client>(url, client).toPromise().then(
 			user => {
 				return user;
 			}

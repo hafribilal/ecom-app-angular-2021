@@ -13,22 +13,22 @@ import { ListarticlesComponent } from './pages/listarticles/listarticles.compone
 
 const routes: Routes = [
 
-{path : '' ,redirectTo : '/home', pathMatch : 'full'},
-{path : 'home' ,component : HomeComponent},
-{path : 'login'  ,component : LoginComponent/*, outlet : "contenu"*/},
-{path : 'signup'   ,component : SignupComponent/*, outlet : "contenu"*/},
-{path : 'shop'   ,component : ListarticlesComponent/*, outlet : "autre"*/},
-{path : 'cart'     ,component : CartComponent},
-{path : 'changepassword'     ,component : ChangepasswordComponent},
-{path : 'checkout'     ,component : CheckoutComponent},
-{path : 'productdetail'     ,component : ArticledetailComponent},
-{path : 'dashboard'     ,component : DashboardComponent},
-{path : 'AdminSignUp'     ,component : SignUpComponent}
+	{ path: '', redirectTo: '/home', pathMatch: 'full' },
+	{ path: 'home', component: HomeComponent },
+	{ path: 'login', component: LoginComponent/*, outlet : "contenu"*/ },
+	{ path: 'signup', component: SignupComponent/*, outlet : "contenu"*/ },
+	{ path: 'shop', component: ListarticlesComponent/*, outlet : "autre"*/ },
+	{ path: 'cart', component: CartComponent },
+	{ path: 'changepassword', component: ChangepasswordComponent },
+	{ path: 'checkout', component: CheckoutComponent },
+	{ path: 'productdetail/:id', component: ArticledetailComponent, pathMatch: 'full' },
+	{ path: 'dashboard', component: DashboardComponent },
+	{ path: 'AdminSignUp', component: SignUpComponent }
 
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+	imports: [RouterModule.forRoot(routes)],
+	exports: [RouterModule]
 })
 export class AppRoutingModule { }
