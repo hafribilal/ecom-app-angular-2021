@@ -18,6 +18,10 @@ export class ApiService implements IApi {
 		return this.http.get<Array<any>>(environment.API_URL + url).toPromise();
 	}
 
+	async getOne(url: string) {
+		return this.http.get<any>(environment.API_URL + url).toPromise();
+	}
+
 	async add(url: string, object: Object) {
 		return this.http.post<Object>(environment.API_URL + url, object).toPromise();
 	}

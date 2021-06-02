@@ -19,7 +19,6 @@ export class ListarticlesComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
-
 		this.images.push("assets/img/product1.jpg");
 		//this.images.push("assets/img/product2.jpg");
 		this.images.push("assets/img/product3.jpg");
