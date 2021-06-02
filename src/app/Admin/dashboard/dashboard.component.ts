@@ -9,7 +9,7 @@ const baseURL = "/articles";
 	styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-
+	selected!: ArticleModule;
 	articles!: ArticleModule[];
 	images!: Array<string>;
 	constructor(private api: ApiService) { }

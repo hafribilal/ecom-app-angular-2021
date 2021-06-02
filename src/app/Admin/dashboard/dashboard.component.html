@@ -29,67 +29,12 @@
       <!--Table head-->
       <!--Table body-->
       <tbody>
-        <tr>
-          <th scope="row">1</th>
+        <tr *ngFor="let article of articles">
+          <th scope="row">{{ article.id }}</th>
           <th><img src="https://dummyimage.com/50x50/55595c/fff" /></th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-          <td>
-            <a><i class="fa fa-edit blue-text" aria-hidden="true"></i> </a>
-            <a><i class="fa fa-trash red-text" aria-hidden="true"></i></a>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <th><img src="https://dummyimage.com/50x50/55595c/fff" /></th>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-          <td>
-            <a><i class="fa fa-edit blue-text" aria-hidden="true"></i> </a>
-            <a><i class="fa fa-trash red-text" aria-hidden="true"></i></a>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <th><img src="https://dummyimage.com/50x50/55595c/fff" /></th>
-          <td>Larry</td>
-          <td>the Bird</td>
-          <td>@twitter</td>
-          <td>
-            <a><i class="fa fa-edit blue-text" aria-hidden="true"></i> </a>
-            <a><i class="fa fa-trash red-text" aria-hidden="true"></i></a>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">1</th>
-          <th><img src="https://dummyimage.com/50x50/55595c/fff" /></th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-          <td>
-            <a><i class="fa fa-edit blue-text" aria-hidden="true"></i> </a>
-            <a><i class="fa fa-trash red-text" aria-hidden="true"></i></a>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <th><img src="https://dummyimage.com/50x50/55595c/fff" /></th>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-          <td>
-            <a><i class="fa fa-edit blue-text" aria-hidden="true"></i> </a>
-            <a><i class="fa fa-trash red-text" aria-hidden="true"></i></a>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <th><img src="https://dummyimage.com/50x50/55595c/fff" /></th>
-          <td>Larry</td>
-          <td>the Bird</td>
-          <td>@twitter</td>
+          <td>{{ article.titre }}</td>
+          <td>{{ article.prix }}</td>
+          <td>{{ article.description }}</td>
           <td>
             <a><i class="fa fa-edit blue-text" aria-hidden="true"></i> </a>
             <a><i class="fa fa-trash red-text" aria-hidden="true"></i></a>
@@ -101,7 +46,7 @@
     <!--Table-->
   </div>
 
-  <product-create></product-create>
+  <product-create [article]="selected"></product-create>
 
 
 </div>
