@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ArticleModule } from 'src/app/models/article/article.module';
 import { ApiService } from 'src/app/services/api.service';
+import { PanierModule } from 'src/app/models/panier/panier.module';
 
 @Component({
 	selector: 'app-articledetail',
@@ -17,7 +18,10 @@ export class ArticledetailComponent implements OnInit {
 	) { }
 	discount: number = 9.99;
 	article!: ArticleModule;
+	panier!: PanierModule;
+	quantity: number = 1;
 	ngOnInit(): void {
+		this.article = new ArticleModule();
 		this.route.params.subscribe(params => {
 			this.api.getOne(`/articles/${params['id']}`).then(
 				(article) => {
@@ -41,6 +45,22 @@ export class ArticledetailComponent implements OnInit {
 		}, 2500);
 
 
+	}
+
+	addToCart() {
+		this.panier = new PanierModule();
+		this.panier.article = this.article;
+		this.panier.quantite = this.quantity;
+		this.api.add('/panier/create', this.panier).then(
+			(result) => {
+				console.log(result);
+			}
+		).catch(
+			(err) => {
+				console.log(err.status + " - " + err.message);
+			}
+		);
+		console.log("Add To Cart clicked");
 	}
 
 }
