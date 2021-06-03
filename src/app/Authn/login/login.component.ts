@@ -26,29 +26,25 @@ export class LoginComponent implements OnInit {
 
 	}
 
-	login() {
-		this.auth.login(this.username, this.password).then((result) => {
-			if (result) {
-				this.router.navigate([`/shop`]);
-			}
-		});
+	form = new FormGroup({
+		Loginuser: new FormControl('', [Validators.required]),
+		passworduser: new FormControl('', [Validators.required])
+	});
+
+	get f() {
+		return this.form.controls;
 	}
 
-	    form = new FormGroup({
-			Loginuser: new FormControl('', [Validators.required]),
-			passworduser: new FormControl('', [Validators.required])
-		});
-	
-		get f() {
-	     	return this.form.controls;
+	submit() {
+
+		if (this.form.status === 'VALID') {
+			this.auth.login(this.username, this.password).then((result) => {
+				if (result) {
+					this.router.navigate([`/shop`]);
+				}
+			});
 		}
-	
-		submit() {
-	
-		  if (this.form.status === 'VALID') {
-		    console.log(this.form.value);
-		  }
-	
-		}
+
+	}
 
 }
