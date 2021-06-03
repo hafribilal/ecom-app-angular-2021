@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ArticleModule } from 'src/app/models/article/article.module';
 import { ApiService } from 'src/app/services/api.service';
 import { PanierModule } from 'src/app/models/panier/panier.module';
+import { CommonService } from 'src/app/services/common.service';
 
 @Component({
 	selector: 'app-articledetail',
@@ -15,6 +16,7 @@ export class ArticledetailComponent implements OnInit {
 		private route: ActivatedRoute,
 		private router: Router,
 		private api: ApiService,
+		private common: CommonService
 	) { }
 	discount: number = 9.99;
 	article!: ArticleModule;
@@ -53,6 +55,7 @@ export class ArticledetailComponent implements OnInit {
 		this.panier.quantite = this.quantity;
 		this.api.add('/panier/create', this.panier).then(
 			(result) => {
+				this.common.updatePanier();
 				console.log(result);
 			}
 		).catch(
