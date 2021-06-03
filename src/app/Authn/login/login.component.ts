@@ -38,11 +38,17 @@ export class LoginComponent implements OnInit {
 	submit() {
 
 		if (this.form.status === 'VALID') {
-			this.auth.login(this.username, this.password).then((result) => {
-				if (result) {
-					this.router.navigate([`/shop`]);
+			this.auth.login(this.username, this.password).then(
+				(result) => {
+					if (result) {
+						this.router.navigate([`/shop`]);
+					}
 				}
-			});
+			).catch(
+				(err) => {
+					console.log(err)
+				}
+			);
 		}
 
 	}
