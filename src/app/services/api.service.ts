@@ -27,7 +27,7 @@ export class ApiService implements IApi {
 		return this.http.put<Object>(environment.API_URL + url, object).toPromise();
 	}
 
-	async delete(url: string, object: Object) {
+	async delete(url: string) {
 		return this.http.delete<Object>(environment.API_URL + url).toPromise();
 	}
 }
