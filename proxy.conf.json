@@ -1,0 +1,11 @@
+{
+  "/api/*": {
+    "target": "http://localhost:8080/ecom",
+    "secure": false,
+    "changeOrigin":false,
+  },
+  "/auth/*": {
+    "target": "http://localhost:8080/ecom",
+    "secure": true
+  }
+}
