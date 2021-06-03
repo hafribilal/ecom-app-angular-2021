@@ -34,21 +34,21 @@ export class LoginComponent implements OnInit {
 		});
 	}
 
-	    form = new FormGroup({
-			Loginuser: new FormControl('', [Validators.required]),
-			passworduser: new FormControl('', [Validators.required])
-		});
-	
-		get f() {
-	     	return this.form.controls;
+	form = new FormGroup({
+		Loginuser: new FormControl('', [Validators.required]),
+		passworduser: new FormControl('', [Validators.required])
+	});
+
+	get f() {
+		return this.form.controls;
+	}
+
+	submit() {
+
+		if (this.form.status === 'VALID') {
+			this.login();
 		}
-	
-		submit() {
-	
-		  if (this.form.status === 'VALID') {
-		    console.log(this.form.value);
-		  }
-	
-		}
+
+	}
 
 }

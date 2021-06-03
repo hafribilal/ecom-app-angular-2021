@@ -12,9 +12,10 @@ const baseURL = "/articles";
 export class ListarticlesComponent implements OnInit {
 
 	//articles!: ArticleModule[];
-	articles!: ArticleModule[];
+	articles!: Array<ArticleModule>;
 	images!: Array<string>;
 	constructor(private api: ApiService) {
+		this.articles = new Array();
 		this.images = new Array();
 	}
 
@@ -27,8 +28,15 @@ export class ListarticlesComponent implements OnInit {
 
 
 	async getArticles() {
-		this.articles = await this.api.getAll(baseURL + "/all");
-		console.log(this.articles)
+		await this.api.getAll(baseURL + "/all").then(
+			(articles) => {
+				this.articles = articles;
+			}
+		).catch(
+			(err) => {
+				console.log(err);
+			}
+		);
 	}
 
 	getImage(image: string): string {
