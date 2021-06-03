@@ -2,6 +2,7 @@ import { Component, OnInit, Output, Input } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ArticleModule } from 'src/app/models/article/article.module';
 import { ApiService } from 'src/app/services/api.service';
+import { CommonService } from 'src/app/services/common.service';
 
 const baseURL = "/articles";
 @Component({
@@ -13,7 +14,7 @@ export class ProductCreateComponent implements OnInit {
 	@Input()
 	@Output()
 	article!: ArticleModule;
-	constructor(private api: ApiService) { }
+	constructor(private api: ApiService, private common: CommonService) { }
 
 	ngOnInit(): void {
 		this.article = new ArticleModule();
@@ -53,9 +54,9 @@ export class ProductCreateComponent implements OnInit {
 	}
 
 	create() {
-		this.api.add(baseURL + "/create", this.article);
+		this.api.add(baseURL + "/create", this.article).then(() => this.common.updateArticles());
 	}
 	update() {
-		this.api.update(baseURL + "/update", this.article);
+		this.api.update(baseURL + "/update", this.article).then(() => this.common.updateArticles());
 	}
 }
