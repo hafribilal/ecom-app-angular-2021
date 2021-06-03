@@ -36,8 +36,8 @@
           <td>{{ article.prix }}</td>
           <td>{{ article.description }}</td>
           <td>
-            <a><i class="fa fa-edit blue-text" aria-hidden="true"></i> </a>
-            <a><i class="fa fa-trash red-text" aria-hidden="true"></i></a>
+            <a (click)="edit(article)"><i class="fa fa-edit blue-text" aria-hidden="true"></i> </a>
+            <a (click)="delete(article.id)"><i class="fa fa-trash red-text" aria-hidden="true"></i></a>
           </td>
         </tr>
       </tbody>
@@ -46,7 +46,7 @@
     <!--Table-->
   </div>
 
-  <product-create [article]="selected"></product-create>
+  <product-create></product-create>
 
 
 </div>

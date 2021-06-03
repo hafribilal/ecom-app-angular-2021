@@ -11,15 +11,13 @@ const baseURL = "/articles";
 	styleUrls: ['./product-create.component.css']
 })
 export class ProductCreateComponent implements OnInit {
-	@Input()
-	@Output()
+
 	article!: ArticleModule;
 	constructor(private api: ApiService, private common: CommonService) { }
 
 	ngOnInit(): void {
-		this.article = new ArticleModule();
-	}
 
+	}
 
 	form = new FormGroup({
 		productRef: new FormControl({ value: '00', disabled: true }, [Validators.required]),
@@ -42,7 +40,11 @@ export class ProductCreateComponent implements OnInit {
 			this.article.titre = this.form.value['prodName'];
 			this.article.prix = this.form.value['prodPrice'];
 			this.article.stock = this.form.value['prodStock'];
-			this.article.description = this.form.value['description'];
+			if (this.form.value['description']) {
+				this.article.description = this.form.value['description'];
+			} else {
+				this.article.description = lorem_ipsum;
+			}
 			if (this.form.value['productRef'] != "00") {
 				console.log("create");
 				this.create();
@@ -54,9 +56,33 @@ export class ProductCreateComponent implements OnInit {
 	}
 
 	create() {
-		this.api.add(baseURL + "/create", this.article).then(() => this.common.updateArticles());
+		this.api.add(baseURL + "/create", this.article).then(
+			() => { this.common.updateArticles(); this.reset(); }
+		);
+
 	}
 	update() {
-		this.api.update(baseURL + "/update", this.article).then(() => this.common.updateArticles());
+		this.api.update(baseURL + "/update", this.article).then(
+			() => { this.common.updateArticles(); this.reset(); }
+		);
 	}
+
+	reset() {
+		this.form.reset();
+		this.form.patchValue({ productRef: "00" });
+	}
+
+	fill(article: ArticleModule) {
+		this.form.setValue({
+			productRef: article.id,
+			prodName: article.titre,
+			prodPrice: article.prix,
+			prodStock: article.stock,
+			description: article.description
+		});
+		console.log("fill")
+	}
+
 }
+
+const lorem_ipsum = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";

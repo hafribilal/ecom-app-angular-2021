@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { ArticleModule } from 'src/app/models/article/article.module';
 import { CommonService } from 'src/app/services/common.service';
 import { Subscription } from 'rxjs';
+import { ProductCreateComponent } from '../product-create/product-create.component';
 
 const baseURL = "/articles";
 @Component({
@@ -11,7 +12,8 @@ const baseURL = "/articles";
 	styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-	selected!: ArticleModule;
+
+	@ViewChild(ProductCreateComponent) child!: ProductCreateComponent;
 	articles!: Array<ArticleModule>;
 	private articlesSubscription: Subscription;
 	images!: Array<string>;
@@ -29,6 +31,14 @@ export class DashboardComponent implements OnInit {
 	}
 	ngOnInit(): void {
 		this.common.updateArticles();
+	}
+
+	edit(selected: ArticleModule) {
+		this.child.fill(selected);
+	}
+
+	delete(id: number) {
+		this.api.delete("/articles/" + id)
 	}
 
 
