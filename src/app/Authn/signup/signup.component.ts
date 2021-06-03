@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Client } from 'src/app/models/client/client.module';
-import { IAuth } from 'src/app/services/i-auth';
+//import { IAuth } from 'src/app/services/i-auth';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';

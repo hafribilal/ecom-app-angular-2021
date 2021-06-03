@@ -36,6 +36,7 @@ export class SignUpComponent implements OnInit {
 
 	form = new FormGroup({
 		username: new FormControl('', [Validators.required]),
+		name: new FormControl('', [Validators.required]),
 		email: new FormControl('', [Validators.required, Validators.email]),
 		password: new FormControl('', [Validators.required]),
 		confirmpassword: new FormControl('', [Validators.required]),
@@ -51,7 +52,7 @@ export class SignUpComponent implements OnInit {
 		if (this.form.status === 'VALID') {
 			//lets check this console log what will print first
 			this.admin.email = this.form.value['email'];
-			this.admin.nom = this.form.value['nom'];
+			this.admin.nom = this.form.value['name'];
 			this.admin.username = this.form.value['username'];
 			this.admin.password = this.form.value['password'];
 			this.admin.tele = this.form.value['phonenum'];
