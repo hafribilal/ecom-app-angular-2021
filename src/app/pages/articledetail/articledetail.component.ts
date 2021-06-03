@@ -15,6 +15,7 @@ export class ArticledetailComponent implements OnInit {
 		private router: Router,
 		private api: ApiService,
 	) { }
+	discount: number = 9.99;
 	article!: ArticleModule;
 	ngOnInit(): void {
 		this.route.params.subscribe(params => {
@@ -29,8 +30,17 @@ export class ArticledetailComponent implements OnInit {
 			if (!this.article) {
 				alert("no product found")
 				this.router.navigate(['/shop']);
+			} else {
+				this.discount += this.article.prix;
+				console.log(this.discount);
+				while (this.discount <= this.article.prix + 10 && this.discount >= this.article.prix * 3) {
+					this.discount = Math.floor(Math.random()) * 10;
+					console.log(this.discount);
+				}
 			}
-		}, 3000)
+		}, 2500);
+
+
 	}
 
 }
