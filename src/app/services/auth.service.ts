@@ -13,6 +13,10 @@ import { IAuth } from './i-auth';
 	providedIn: 'root'
 })
 export class AuthService implements IAuth {
+	private loggedIn = new BehaviorSubject<boolean>(false);
+	private admin = new BehaviorSubject<boolean>(false);
+	private client = new BehaviorSubject<boolean>(false);
+
 	private currentUserSubject!: BehaviorSubject<Compt>;
 	public currentUser!: Observable<Compt>;
 
@@ -24,12 +28,37 @@ export class AuthService implements IAuth {
 		}
 	}
 
+	get isLoggedIn() {
+		let admin: boolean = false;
+		let client: boolean = false;
+		this.isAdmin.subscribe(isAdmin => {
+			admin = isAdmin;
+		});
+		this.isClient.subscribe(isClient => {
+			client = isClient;
+		});
+		if (admin || client) {
+			this.loggedIn.next(true);
+		}
+		return this.loggedIn.asObservable();
+	}
+
+	get isAdmin() {
+		this.load();
+		return this.admin.asObservable();
+	}
+
+	get isClient() {
+		this.load();
+		return this.client.asObservable();
+	}
+
 	public get currentUserValue(): Compt {
 		return this.currentUserSubject.value;
 	}
 
 	async login(username: string, password: string): Promise<boolean> {
-		let OK = false;
+		this.loggedIn.next(false);
 		const url = `${environment.AUTH_URL}/login`;
 		let body = {
 			'username': username,
@@ -40,17 +69,38 @@ export class AuthService implements IAuth {
 			// store jwt token in local storage to keep user logged in between page refreshes
 			if (token) {
 				localStorage.setItem(environment.JWT, token);
-				OK = true;
+				this.loggedIn.next(true);
+				console.log(this.isLoggedIn);
+				this.load();
 			}
 
 		});
-		return OK;
+		return this.loggedIn.value;
+	}
+
+	load() {
+		this.http.get(environment.AUTH_URL + "/").toPromise().catch(
+			res => {
+				if (res.error.text === "[ROLE_ADMIN]") {
+					console.log("ADMIN Login");
+					this.admin.next(true);
+					localStorage.setItem("USER_ROLE", "ADMIN")
+				} else if (res.error.text === "[ROLE_USER]") {
+					console.log("CLINET Login")
+					this.client.next(true);
+					localStorage.setItem("USER_ROLE", "USER")
+				}
+			}
+		);
 	}
 
 	logout() {
 		// remove user from local storage to log user out
-		localStorage.removeItem('currentUser');
-		this.currentUserSubject.next(new Compt);
+		localStorage.removeItem('USER_ROLE');
+		localStorage.removeItem('USER_TOKEN');
+		//this.currentUserSubject.next(new Compt);
+		this.loggedIn.next(false);
+		window.location.reload();
 	}
 
 	async adminSignUp(admin: Admin): Promise<Admin> {
