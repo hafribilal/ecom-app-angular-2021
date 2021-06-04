@@ -71,7 +71,7 @@ export class ProductCreateComponent implements OnInit {
 
 	reset() {
 		this.form.reset();
-		this.form.patchValue({ productRef: "00" });
+		this.form.patchValue({ productRef: 0 });
 	}
 
 	fill(article: ArticleModule) {
