@@ -20,7 +20,7 @@ export class ClientGuard implements CanActivate {
 					if (localStorage.getItem("USER_ROLE") === "USER") {
 						permission = true;
 					} else {
-						this.navTo("shop");
+						this.navTo("dashboard");
 					}
 				} else {
 					this.navTo("login");

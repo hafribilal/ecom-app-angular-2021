@@ -20,7 +20,7 @@ export class AdminGuard implements CanActivate {
 					if (localStorage.getItem("USER_ROLE") === "ADMIN") {
 						permission = true;
 					} else {
-						this.navTo("dashboard");
+						this.navTo("shop");
 					}
 				} else {
 					this.navTo("login");
