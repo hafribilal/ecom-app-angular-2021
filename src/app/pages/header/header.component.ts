@@ -23,15 +23,8 @@ export class HeaderComponent implements OnInit {
 		private common: CommonService) {
 
 		if (localStorage.getItem("USER_ROLE")) {
-			setTimeout(
-				() => {
-					this.auth.load();
-					//console.log("after 5s")
-				}, 5000
-			);
-
+			setTimeout(() => { this.auth.load(); }, 100);
 		}
-
 	}
 
 	ngOnDestroy() {
