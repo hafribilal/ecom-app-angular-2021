@@ -11,7 +11,7 @@ import { CommonService } from 'src/app/services/common.service';
 	styleUrls: ['./articledetail.component.css']
 })
 export class ArticledetailComponent implements OnInit {
-
+	role = localStorage.getItem("USER_ROLE");
 	constructor(
 		private route: ActivatedRoute,
 		private router: Router,
@@ -32,6 +32,9 @@ export class ArticledetailComponent implements OnInit {
 				}
 			)
 		});
+		if (localStorage.getItem("USER_ROLE") === "USER") {
+			this.common.updatePanier();
+		}
 		setTimeout(() => {
 			if (!this.article) {
 				alert("no product found")

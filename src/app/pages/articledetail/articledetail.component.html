@@ -13,8 +13,8 @@
         <p class="lead" *ngIf="article.description; else description">
           {{ article.description }}
         </p>
-        <div class="d-flex">
-          <input class="form-control text-center me-3" id="inputQuantity" type="number" style="max-width: 3rem" [(ngModel)]="quantity" />
+        <div class="d-flex" *ngIf="role == 'USER'">
+          <input class="form-control text-center me-5" id="inputQuantity" type="number" style="max-width: 3rem" [(ngModel)]="quantity" />
           <button class="btn btn-outline-dark flex-shrink-0" type="button" (click)="addToCart()">
             <i class="bi-cart-fill me-1"></i>
             Add to cart
