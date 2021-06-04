@@ -8,7 +8,7 @@ import { PanierModule } from 'src/app/models/panier/panier.module';
 	styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
-
+	total: number = 0;
 	paniers!: Array<PanierModule>;
 	constructor(private api: ApiService) { }
 
@@ -17,13 +17,19 @@ export class CartComponent implements OnInit {
 		this.api.getAll("/panier/all").then(
 			(paniers) => {
 				this.paniers = paniers;
-				console.log(paniers)
+				this.update(null);
 			}
 		);
 	}
 
-	load() {
-
+	update(index: number | null) {
+		this.total = 0;
+		if (index != null) {
+			this.api.update("/panier/update", this.paniers[index]);
+		}
+		for (let i = 0; i < this.paniers.length; i++) {
+			this.total += this.paniers[i].article.prix * this.paniers[i].quantite;
+		}
 	}
 
 	delete(id: number) {
@@ -36,6 +42,10 @@ export class CartComponent implements OnInit {
 				console.log(err.message)
 			}
 		);
+	}
+
+	submit() {
+
 	}
 
 }

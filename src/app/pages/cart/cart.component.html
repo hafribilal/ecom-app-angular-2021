@@ -8,6 +8,7 @@
 
 <div class="container mb-4">
   <div class="row">
+    <!-- [formGroup]="form" (ngSubmit)="submit()" -->
     <div class="col-12">
       <div class="table-responsive">
         <table class="table table-striped">
@@ -22,7 +23,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let panier of paniers">
+            <tr *ngFor="let panier of paniers; let i = index">
               <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
               <td>{{ panier.article.titre }}</td>
               <td>
@@ -30,7 +31,7 @@
                 <span *ngIf="panier.article.stock <= 1">Out of</span>
                 <span> stock</span>
               </td>
-              <td><input class="form-control" type="text" [(ngModel)]="panier.quantite" /></td>
+              <td><input class="form-control" type="text" [(ngModel)]="panier.quantite" (change)="update(i)" onkeydown="event.keyCode===13 && this.blur();" /></td>
               <td class="text-right">{{ panier.article.prix }} Dh</td>
               <td class="text-right">
                 <button class="btn btn-sm btn-danger" (click)="delete(panier.id)">
@@ -45,7 +46,7 @@
               <td></td>
               <td></td>
               <td><strong>Total</strong></td>
-              <td class="text-right"><strong>346,90 €</strong></td>
+              <td class="text-right"><strong>{{ total }} Dh</strong></td>
             </tr>
           </tbody>
         </table>
