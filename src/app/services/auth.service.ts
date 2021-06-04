@@ -29,27 +29,27 @@ export class AuthService implements IAuth {
 	}
 
 	get isLoggedIn() {
-		let admin: boolean = false;
-		let client: boolean = false;
-		this.isAdmin.subscribe(isAdmin => {
-			admin = isAdmin;
-		});
-		this.isClient.subscribe(isClient => {
-			client = isClient;
-		});
-		if (admin || client) {
-			this.loggedIn.next(true);
-		}
+		// let admin: boolean = false;
+		// let client: boolean = false;
+		// this.isAdmin.subscribe(isAdmin => {
+		// 	this.admin.next(isAdmin);
+		// });
+		// this.isClient.subscribe(isClient => {
+		// 	this.client.next(isClient);
+		// });
+		// if (this.admin || this.client) {
+		// 	this.loggedIn.next(true);
+		// }
 		return this.loggedIn.asObservable();
 	}
 
 	get isAdmin() {
-		this.load();
+		//this.load();
 		return this.admin.asObservable();
 	}
 
 	get isClient() {
-		this.load();
+		//this.load();
 		return this.client.asObservable();
 	}
 
@@ -81,6 +81,7 @@ export class AuthService implements IAuth {
 	load() {
 		this.http.get(environment.AUTH_URL + "/").toPromise().catch(
 			res => {
+				this.loggedIn.next(true);
 				if (res.error.text === "[ROLE_ADMIN]") {
 					//console.log("ADMIN Login");
 					this.admin.next(true);
