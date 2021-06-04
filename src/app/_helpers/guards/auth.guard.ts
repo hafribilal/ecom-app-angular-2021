@@ -15,7 +15,7 @@ export class AuthGuard implements CanActivate {
 		this.authService.isLoggedIn.subscribe(
 			res => {
 				permission = res;
-				console.log("permission : " + res)
+				//console.log("permission : " + res)
 				if (permission || localStorage.getItem("USER_TOKEN")) {
 					permission = true;
 				} else {

@@ -15,7 +15,7 @@ export class AdminGuard implements CanActivate {
 		this.authService.isAdmin.subscribe(
 			res => {
 				permission = res;
-				console.log("permission : " + res)
+				//console.log("permission : " + res)
 				if (permission || localStorage.getItem("USER_TOKEN")) {
 					if (localStorage.getItem("USER_ROLE") === "ADMIN") {
 						permission = true;

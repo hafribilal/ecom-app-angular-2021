@@ -15,7 +15,7 @@ export class ClientGuard implements CanActivate {
 		this.authService.isClient.subscribe(
 			res => {
 				permission = res;
-				console.log("permission : " + res)
+				//console.log("permission : " + res)
 				if (permission || localStorage.getItem("USER_TOKEN")) {
 					if (localStorage.getItem("USER_ROLE") === "USER") {
 						permission = true;
