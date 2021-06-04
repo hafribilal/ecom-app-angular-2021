@@ -13,15 +13,38 @@
           <a class="nav-link" routerLinkActive="active current" routerLink="/shop">Shop</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active current" routerLink="/login">SignIn</a>
+          <a class="nav-link" routerLinkActive="active current" routerLink="/dashboard" *ngIf="isAdmin">Dashboard</a>
         </li>
-        <li class="nav-item"><a class="nav-link" routerLinkActive="active current" routerLink="/signup">SignUp</a></li>
       </ul>
       <form class="d-flex">
-        <button class="btn btn-outline-dark" routerLinkActive="active current" routerLink="/cart" type="submit">
+        <button class="btn btn-outline-dark" routerLinkActive="active current" routerLink="/login" *ngIf="!isLoggedIn">
+          SignIn
+          <i class="bi bi-box-arrow-in-right"></i>
+        </button>
+        <!-- <button class="btn btn-outline-dark" routerLinkActive="active current" routerLink="/client/signup" *ngIf="!isLoggedIn">
+          SignUp
+          <i class="bi bi-box-arrow-in-right"></i>
+        </button> -->
+
+        <div class="btn-group" *ngIf="!isLoggedIn">
+          <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            SignUp
+          </button>
+          <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="dropdownMenuButton2">
+            <li><a class="dropdown-item" routerLink="/client/signup">as Client</a></li>
+            <li><a class="dropdown-item" routerLink="/admin/signup">as Admin</a></li>
+          </ul>
+        </div>
+
+        <button class="btn btn-outline-dark" routerLinkActive="active current" routerLink="/cart" type="submit" *ngIf="isClient">
           <i class="bi-cart-fill me-1"></i>
           Cart
-          <span class="badge bg-dark text-white ms-1 rounded-pill">{{ panier }}</span>
+          <span class="badge bg-dark text-black ms-1 rounded-pill">{{ panier }}</span>
+        </button>
+
+        <button class="btn btn-outline-dark" (click)="logout()" *ngIf="isLoggedIn">
+          Logout
+          <i class="bi bi-box-arrow-in-right"></i>
         </button>
       </form>
     </div>
