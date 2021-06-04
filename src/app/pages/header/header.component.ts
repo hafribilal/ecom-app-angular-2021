@@ -26,7 +26,7 @@ export class HeaderComponent implements OnInit {
 			setTimeout(
 				() => {
 					this.auth.load();
-					console.log("after 5s")
+					//console.log("after 5s")
 				}, 5000
 			);
 
@@ -37,6 +37,7 @@ export class HeaderComponent implements OnInit {
 	ngOnDestroy() {
 		// It's a good practice to unsubscribe to ensure no memory leaks
 		this.panierSubscription.unsubscribe();
+		this.authSubscription.unsubscribe();
 	}
 
 	ngOnInit(): void {
@@ -49,7 +50,7 @@ export class HeaderComponent implements OnInit {
 		this.authSubscription = this.auth.isClient.subscribe(
 			(isClient) => {
 				this.isClient = isClient;
-				console.log("TEST CLIENT PERMISSION")
+				//console.log("TEST CLIENT PERMISSION")
 				if (isClient) {
 					// subscribe to common component
 					this.panierSubscription = this.common.getPanier().subscribe

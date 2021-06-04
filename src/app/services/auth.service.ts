@@ -82,11 +82,11 @@ export class AuthService implements IAuth {
 		this.http.get(environment.AUTH_URL + "/").toPromise().catch(
 			res => {
 				if (res.error.text === "[ROLE_ADMIN]") {
-					console.log("ADMIN Login");
+					//console.log("ADMIN Login");
 					this.admin.next(true);
 					localStorage.setItem("USER_ROLE", "ADMIN")
 				} else if (res.error.text === "[ROLE_USER]") {
-					console.log("CLINET Login")
+					//console.log("CLINET Login")
 					this.client.next(true);
 					localStorage.setItem("USER_ROLE", "USER")
 				}
