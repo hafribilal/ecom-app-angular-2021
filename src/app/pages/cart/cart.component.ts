@@ -36,6 +36,7 @@ export class CartComponent implements OnInit {
 		this.api.delete("/panier/" + id).then(
 			() => {
 				this.paniers = this.paniers.filter(obj => obj.id != id);
+				this.update(null)
 			}
 		).catch(
 			(err) => {
