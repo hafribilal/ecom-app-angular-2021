@@ -23,7 +23,7 @@ export class HeaderComponent implements OnInit {
 		private common: CommonService) {
 
 		if (localStorage.getItem("USER_ROLE")) {
-			setTimeout(() => { this.auth.load(); }, 100);
+			this.auth.load();
 		}
 	}
 
@@ -40,20 +40,21 @@ export class HeaderComponent implements OnInit {
 			}
 		);
 
-		this.authSubscription = this.auth.isClient.subscribe(
+		this.authSubscription = this.auth.isClient.subscribe
+			(
 			(isClient) => {
 				this.isClient = isClient;
-				//console.log("TEST CLIENT PERMISSION")
+
 				if (isClient) {
-					// subscribe to common component
+					console.log("isClient : " + isClient);
+					this.common.updatePanier();
 					this.panierSubscription = this.common.getPanier().subscribe
-						((count) => {
-							//count contains the data sent from common service
-							this.panier = count;
-						});
+						(
+						(count) => { this.panier = count; console.log(count) }
+						);
 				}
 			}
-		);
+			);
 
 		this.authSubscription = this.auth.isLoggedIn.subscribe(
 			(isLoggedIn) => {
