@@ -35,6 +35,12 @@ export class SignupComponent implements OnInit {
 					this.router.navigate([`/login`, { username: client.username }]);
 				else alert("SignUp Refused");
 			}
+		).catch(
+			(err) => {
+				if (err.status === 500) {
+					this.router.navigate([`/login`, { username: this.client.username }]);
+				}
+			}
 		);
 	}
 
