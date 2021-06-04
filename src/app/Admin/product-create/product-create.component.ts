@@ -12,6 +12,7 @@ const baseURL = "/articles";
 })
 export class ProductCreateComponent implements OnInit {
 
+	btnSubmit_txt: string = "ADD";
 	article!: ArticleModule;
 	constructor(private api: ApiService, private common: CommonService) { }
 
@@ -64,17 +65,21 @@ export class ProductCreateComponent implements OnInit {
 
 	}
 	update() {
+		console.log("this is the article before update : ");
+		console.log(this.article);
 		this.api.update(baseURL + "/update", this.article).then(
 			() => { this.common.updateArticles(); this.reset(); }
 		);
 	}
 
 	reset() {
+		this.btnSubmit_txt = "ADD";
 		this.form.reset();
 		this.form.patchValue({ productRef: 0 });
 	}
 
 	fill(article: ArticleModule) {
+		this.btnSubmit_txt = "UPDATE";
 		this.form.setValue({
 			productRef: article.id,
 			prodName: article.titre,
