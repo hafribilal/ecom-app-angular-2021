@@ -13,7 +13,7 @@
         <div class="form-group">
           <label class="control-label col-sm-2" for="fname">Product Ref:</label>
           <div class="col-sm-10">
-            <input formControlName="productRef" type="text" class="form-control" id="productRef" placeholder="Enter Product Reference" name="productRef">
+            <input formControlName="productRef" type="number" class="form-control" id="productRef" placeholder="Enter Product Reference" name="productRef">
             <div *ngIf="f.productRef.touched && f.productRef.invalid" class="alert alert-danger">
               <div *ngIf="f.productRef.errors != null && f.productRef.errors.required"> Product Reference is required
               </div>

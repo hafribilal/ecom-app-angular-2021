@@ -16,11 +16,11 @@ export class ProductCreateComponent implements OnInit {
 	constructor(private api: ApiService, private common: CommonService) { }
 
 	ngOnInit(): void {
-
+		this.article = new ArticleModule();
 	}
 
 	form = new FormGroup({
-		productRef: new FormControl({ value: '00', disabled: true }, [Validators.required]),
+		productRef: new FormControl({ value: 0, disabled: true }, [Validators.required]),
 		prodName: new FormControl('', [Validators.required]),
 		prodPrice: new FormControl('', [Validators.required]),
 		prodStock: new FormControl('', [Validators.required]),
@@ -34,18 +34,20 @@ export class ProductCreateComponent implements OnInit {
 	submit() {
 		console.log("SUBMIT")
 		if (this.form.status === 'VALID') {
-			if (this.form.value['productRef'] != "00") {
-				this.article.id = this.form.value['productRef'];
+			let obj = this.form.getRawValue()
+			if (obj.productRef) {
+				console.log("productRef : " + obj.productRef);
+				this.article.id = obj.productRef;
 			}
-			this.article.titre = this.form.value['prodName'];
-			this.article.prix = this.form.value['prodPrice'];
-			this.article.stock = this.form.value['prodStock'];
-			if (this.form.value['description']) {
-				this.article.description = this.form.value['description'];
+			this.article.titre = obj.prodName;
+			this.article.prix = obj.prodPrice;
+			this.article.stock = obj.prodStock;
+			if (obj.description) {
+				this.article.description = obj.description;
 			} else {
 				this.article.description = lorem_ipsum;
 			}
-			if (this.form.value['productRef'] != "00") {
+			if (!obj.productRef) {
 				console.log("create");
 				this.create();
 			} else {
