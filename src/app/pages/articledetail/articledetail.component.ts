@@ -28,7 +28,6 @@ export class ArticledetailComponent implements OnInit {
 			this.api.getOne(`/articles/${params['id']}`).then(
 				(article) => {
 					this.article = article;
-					console.log(this.article);
 				}
 			)
 		});
@@ -41,32 +40,33 @@ export class ArticledetailComponent implements OnInit {
 				this.router.navigate(['/shop']);
 			} else {
 				this.discount += this.article.prix;
-				console.log(this.discount);
 				while (this.discount <= this.article.prix + 10 && this.discount >= this.article.prix * 3) {
 					this.discount = Math.floor(Math.random()) * 10;
-					console.log(this.discount);
 				}
 			}
-		}, 2500);
+		}, 600);
 
 
 	}
 
 	addToCart() {
-		this.panier = new PanierModule();
-		this.panier.article = this.article;
-		this.panier.quantite = this.quantity;
-		this.api.add('/panier/create', this.panier).then(
-			(result) => {
-				this.common.updatePanier();
-				console.log(result);
-			}
-		).catch(
-			(err) => {
-				console.log(err.status + " - " + err.message);
-			}
-		);
-		console.log("Add To Cart clicked");
+		if (this.quantity >= 0) {
+			this.panier = new PanierModule();
+			this.panier.article = this.article;
+			this.panier.quantite = this.quantity;
+			this.api.add('/panier/create', this.panier).then(
+				(result) => {
+					this.common.updatePanier();
+				}
+			).catch(
+				(err) => {
+					console.log(err.status + " - " + err.message);
+				}
+			);
+			console.log("Add To Cart clicked");
+		} else {
+			alert("Wrong quantity");
+		}
 	}
 
 }
