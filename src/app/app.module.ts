@@ -25,6 +25,7 @@ import { DashboardComponent } from './Admin/dashboard/dashboard.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JWTInterceptor } from './_helpers/interceptors/jwt.interceptor';
 import { SignUpComponent } from './Admin/sign-up/sign-up.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { SignUpComponent } from './Admin/sign-up/sign-up.component';
 		HomeComponent,
 		DashboardComponent,
 		ProductCreateComponent,
-		SignUpComponent
+		SignUpComponent,
+  NotFoundComponent
 	],
 	imports: [
 		BrowserModule,

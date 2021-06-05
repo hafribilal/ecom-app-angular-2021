@@ -24,6 +24,9 @@ export class ListarticlesComponent implements OnInit {
 		this.images.push("assets/img/product1.jpg");
 		//this.images.push("assets/img/product2.jpg");
 		this.images.push("assets/img/product3.jpg");
+		// setTimeout(() => {
+		//
+		// }, 300)
 		this.getArticles();
 		if (localStorage.getItem("USER_ROLE") === "USER") {
 			this.common.updatePanier();
@@ -43,11 +46,10 @@ export class ListarticlesComponent implements OnInit {
 		);
 	}
 
-	getImage(image: string): string {
-		if (image) {
-			return image;
+	getImage(index: number): void {
+		if (!this.articles[index].thumbnail) {
+			const random = Math.floor(Math.random() * this.images.length);
+			this.articles[index].thumbnail = this.images[random];
 		}
-		const random = Math.floor(Math.random() * this.images.length);
-		return this.images[random];
 	}
 }
