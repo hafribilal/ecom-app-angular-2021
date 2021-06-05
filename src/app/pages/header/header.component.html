@@ -1,7 +1,7 @@
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container px-4 px-lg-5">
-    <a class="navbar-brand" routerLink="/home" href="#!">Stop & Shop</a>
+    <a class="navbar-brand" routerLink="/home">Stop & Shop</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
         class="navbar-toggler-icon"></span></button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -15,13 +15,16 @@
         <li class="nav-item">
           <a class="nav-link" routerLinkActive="active current" routerLink="/dashboard" *ngIf="isAdmin">Dashboard</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active current" routerLink="/login" *ngIf="!isLoggedIn">SignIn</a>
+        </li>
       </ul>
       <form class="d-flex">
-        <button class="btn btn-outline-dark" routerLinkActive="active current" routerLink="/login" *ngIf="!isLoggedIn">
+        <!-- <button class="btn btn-outline-dark" routerLinkActive="active current" routerLink="/login" *ngIf="!isLoggedIn">
           SignIn
           <i class="bi bi-box-arrow-in-right"></i>
         </button>
-        <!-- <button class="btn btn-outline-dark" routerLinkActive="active current" routerLink="/client/signup" *ngIf="!isLoggedIn">
+       <button class="btn btn-outline-dark" routerLinkActive="active current" routerLink="/client/signup" *ngIf="!isLoggedIn">
           SignUp
           <i class="bi bi-box-arrow-in-right"></i>
         </button> -->

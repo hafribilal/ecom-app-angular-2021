@@ -4,3 +4,12 @@
 .bg-light{
   background-color: #92ab63f7!important
 }
+
+#navbarSupportedContent .me-auto
+{
+  padding-left: 600px;
+}
+
+.btn-group ul {
+  background-color: #95ae68;
+}
