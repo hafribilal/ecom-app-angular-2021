@@ -33,11 +33,9 @@ export class ProductCreateComponent implements OnInit {
 	}
 
 	submit() {
-		console.log("SUBMIT")
 		if (this.form.status === 'VALID') {
 			let obj = this.form.getRawValue()
 			if (obj.productRef) {
-				console.log("productRef : " + obj.productRef);
 				this.article.id = obj.productRef;
 			}
 			this.article.titre = obj.prodName;
@@ -65,8 +63,6 @@ export class ProductCreateComponent implements OnInit {
 
 	}
 	update() {
-		console.log("this is the article before update : ");
-		console.log(this.article);
 		this.api.update(baseURL + "/update", this.article).then(
 			() => { this.common.updateArticles(); this.reset(); }
 		);
@@ -87,7 +83,6 @@ export class ProductCreateComponent implements OnInit {
 			prodStock: article.stock,
 			description: article.description
 		});
-		console.log("fill")
 	}
 
 }

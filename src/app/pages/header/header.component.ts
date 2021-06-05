@@ -3,7 +3,6 @@ import { ApiService } from 'src/app/services/api.service';
 import { CommonService } from 'src/app/services/common.service';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
-import { take, map } from 'rxjs/operators';
 
 @Component({
 	selector: 'app-header',
@@ -46,11 +45,10 @@ export class HeaderComponent implements OnInit {
 				this.isClient = isClient;
 
 				if (isClient) {
-					console.log("isClient : " + isClient);
 					this.common.updatePanier();
 					this.panierSubscription = this.common.getPanier().subscribe
 						(
-						(count) => { this.panier = count; console.log(count) }
+						(count) => { this.panier = count; }
 						);
 				}
 			}
