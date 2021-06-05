@@ -1,15 +1,15 @@
-.d-flex button {
-  margin: 0 10px;
-}
-.bg-light{
+.bg-light , .btn-group ul{
   background-color: #92ab63f7!important
 }
 
 #navbarSupportedContent .me-auto
 {
-  padding-left: 600px;
+  padding-left: 560px;
 }
 
-.btn-group ul {
-  background-color: #95ae68;
+.d-flex {
+  margin-right: 46px;
+}
+.d-flex .log {
+  margin-left: 8px;
 }
