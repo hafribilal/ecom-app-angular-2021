@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
 				}
 			).catch(
 				(err) => {
-					console.log(err.status)
+					console.log("error status : " + err.status)
 				}
 			);
 		}
