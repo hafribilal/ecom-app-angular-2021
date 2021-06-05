@@ -13,6 +13,7 @@ import { ListarticlesComponent } from './pages/listarticles/listarticles.compone
 import { AuthGuard } from './_helpers/guards/auth.guard';
 import { ClientGuard } from './_helpers/guards/client.guard';
 import { AdminGuard } from './_helpers/guards/admin.guard';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 const routes: Routes = [
 
@@ -27,7 +28,7 @@ const routes: Routes = [
 	{ path: 'productdetail/:id', component: ArticledetailComponent, pathMatch: 'full', canActivate: [AuthGuard] },
 	{ path: 'cart', component: CartComponent, canActivate: [ClientGuard] },
 	{ path: 'checkout', component: CheckoutComponent, canActivate: [ClientGuard] },
-	{ path: '**', component: HomeComponent }
+	{ path: '**', component: NotFoundComponent }
 ];
 
 @NgModule({
