@@ -8,7 +8,7 @@ import { CustomValidator } from 'src/app/validator/custom-validator';
 @Component({
 	selector: 'admin-signup',
 	templateUrl: './admin-signup.component.html',
-	styleUrls: ['./admin-sign-up.component.css']
+	styleUrls: ['./admin-signup.component.css']
 })
 export class AdminSignupComponent implements OnInit {
 
