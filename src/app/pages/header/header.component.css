@@ -1,5 +1,8 @@
-.bg-light , .btn-group ul{
-  background-color: #92ab63f7!important
+.bg-light , .dropdown-toggle {
+  background-color: #000000c9!important;
+}
+.btn-group ul{
+  background-color: #00000099!important;
 }
 
 #navbarSupportedContent .me-auto
@@ -10,6 +13,21 @@
 .d-flex {
   margin-right: 46px;
 }
-.d-flex .log {
+.btn-outline-dark {
+  width: 100px !important;
+}
+.log {
   margin-left: 8px;
+}
+.px-lg-5 a , .btn-outline-dark {
+    color: #fff;
+}
+.px-lg-5 .navbar-brand {
+  text-transform: uppercase;
+}
+.nav-link.active {
+  color: #95ae68  !important;
+}
+.dropdown-menu {
+  margin-top: 8px;
 }
