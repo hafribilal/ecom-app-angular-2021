@@ -3,6 +3,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
+import { MatPaginatorModule } from '@angular/material/paginator'
+import { MatSortModule } from '@angular/material/sort';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select'; 
+import { MatTableModule } from '@angular/material/table';
 import { HttpClientModule } from '@angular/common/http';
 /*import { AngularFontAwesomeModule} from 'angular-font-awesome';*/
 
@@ -32,6 +39,7 @@ import { ForgotPasswordComponent } from './Components/forgot-password/forgot-pas
 import { DashboardComponent } from './Pages/dashboard/dashboard.component';
 import { CreateProductComponent } from './Components/create-product/create-product.component';
 import { AboutComponent } from './pages/about/about.component';
+import { CdkTableModule } from '@angular/cdk/table';
 
 
 @NgModule({
@@ -62,7 +70,15 @@ import { AboutComponent } from './pages/about/about.component';
 		BrowserAnimationsModule,
 		MatButtonModule,
 		MatInputModule,
-		MatFormFieldModule
+		MatFormFieldModule,
+		MatTableModule,
+  		MatPaginatorModule,
+  		MatSortModule,
+  		MatMenuModule,
+  		MatIconModule,
+  		MatDialogModule,
+  		MatSelectModule,
+		CdkTableModule  
 	],
 	providers: [
 		[{

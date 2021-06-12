@@ -1,8 +1,9 @@
+
 <div class="card mb-4">
   <div class="card-body">
-    <!-- Grid row -->
+    <!--
     <div class="row">
-      <!-- Grid column -->
+      
       <div class="col-md-12">
         <h2 class="pt-3 pb-4 text-center font-bold font-up deep-purple-text">Products Liste </h2>
         <div class="input-group md-form form-sm form-2 pl-0">
@@ -10,12 +11,11 @@
           <span class="input-group-addon waves-effect purple lighten-2" id="basic-addon1"><a><i class="fa fa-search white-text" aria-hidden="true"></i></a></span>
         </div>
       </div>
-      <!-- Grid column -->
+      
     </div>
-    <!-- Grid row -->
-    <!--Table-->
+    
     <table class="table table-striped">
-      <!--Table head-->
+      
       <thead>
         <tr>
           <th>#ID</th>
@@ -26,8 +26,7 @@
           <th>Action</th>
         </tr>
       </thead>
-      <!--Table head-->
-      <!--Table body-->
+      
       <tbody>
         <tr *ngFor="let article of articles">
           <th scope="row">{{ article.id }}</th>
@@ -41,9 +40,41 @@
           </td>
         </tr>
       </tbody>
-      <!--Table body-->
+      
     </table>
-    <!--Table-->
+  -->
+
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+      <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
+        <th mat-header-cell *matHeaderCellDef>
+          <div style="display: flex; align-items: center;">
+            <span mat-sort-header>{{column}}</span>
+           
+          </div>
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
+      </ng-container>
+      <ng-container [matColumnDef]="'actions'">
+        <th mat-header-cell *matHeaderCellDef> actions </th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button (click)="edit(element)">
+            <mat-icon mat-icon-button color='primary'>edit</mat-icon>
+          </button>
+          <button mat-icon-button (click)="delete(element['id'])">
+            <mat-icon mat-icon-button color="warn">delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+      <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
+    </table>
+  
+    <mat-paginator [pageSize]="5" 
+    [pageSizeOptions]="[5, 10, 50]" showFirstLastButtons></mat-paginator>
+  
+  </div>
+
   </div>
 
   <create-product></create-product>
