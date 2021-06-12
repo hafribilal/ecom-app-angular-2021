@@ -1,4 +1,4 @@
-<!-- Navigation-->
+<!--
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container px-4 px-lg-5">
     <a class="navbar-brand" routerLink="/home">Stop & Shop</a>
@@ -20,14 +20,6 @@
         </li>
       </ul>
       <form class="d-flex">
-        <!-- <button class="btn btn-outline-dark" routerLinkActive="active current" routerLink="/login" *ngIf="!isLoggedIn">
-          SignIn
-          <i class="bi bi-box-arrow-in-right"></i>
-        </button>
-       <button class="btn btn-outline-dark" routerLinkActive="active current" routerLink="/client/signup" *ngIf="!isLoggedIn">
-          SignUp
-          <i class="bi bi-box-arrow-in-right"></i>
-        </button> -->
 
         <div class="btn-group" *ngIf="!isLoggedIn">
           <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -52,4 +44,70 @@
       </form>
     </div>
   </div>
-</nav>
+</nav> -->
+
+<header class="header">
+  <!-- Header Main -->
+  <div class="header_main d-flex justify-content-center">
+    <div class="container">
+      <div class="row justify-content-center">
+        <!-- Logo -->
+        <div class="col-lg-3 col-sm-3 col-3 order-1">
+          <div class="logo_container">
+            <div class="logo"><a href="#"><strong>D2J-Store</strong></a></div>
+          </div>
+        </div>
+        <!-- Wishlist -->
+        <div class="col-9 order-lg-3 order-2 text-lg-left text-right">
+          <div class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
+            <!-- Cart -->
+            <div class="cart" *ngIf="isLoggedIn" style="margin-right: 15px;">
+              <div class="cart_container d-flex flex-row align-items-center justify-content-end" routerLinkActive="active current" routerLink="/cart" *ngIf="isClient">
+                <div class="cart_icon" style="pointer: cursor;">
+                  <img src="./assets/ico/cart.png" alt="">
+                  <div class="cart_count"><span>{{ panier }}</span></div>
+                </div>
+                <div class="cart_content">
+                  <div class="cart_text"><a style="pointer: cursor;">Cart</a></div>
+                  <div class="cart_price">$0</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="top_bar_content ml-auto">
+              <div class="top_bar_menu" *ngIf="!isLoggedIn" style="pointer:cursor;">
+                <ul class="standard_dropdown top_bar_dropdown">
+                  <li>
+                    <a>
+                      <span class="user_icon">
+                        <img src="./assets/ico/user.svg" alt="">
+                      </span>
+                      <span> Register</span>
+                    </a>
+                    <ul>
+                      <li><a routerLink="/admin/signup">as Admin</a></li>
+                      <li><a routerLink="/client/signup">as Client</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+              <div class="top_bar_user">
+                <div *ngIf="!isLoggedIn"><a routerLink="/login">Sign in</a>
+                </div>
+                <div *ngIf="isLoggedIn">
+                  <a href="#" (click)="logout()">
+                    <span class="user_icon">
+                      <img src="./assets/ico/logout.svg" alt="">
+                    </span>
+                    <span> Logout</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

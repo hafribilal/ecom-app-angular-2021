@@ -29,27 +29,14 @@ export class AuthService implements IAuth {
 	}
 
 	get isLoggedIn() {
-		// let admin: boolean = false;
-		// let client: boolean = false;
-		// this.isAdmin.subscribe(isAdmin => {
-		// 	this.admin.next(isAdmin);
-		// });
-		// this.isClient.subscribe(isClient => {
-		// 	this.client.next(isClient);
-		// });
-		// if (this.admin || this.client) {
-		// 	this.loggedIn.next(true);
-		// }
 		return this.loggedIn.asObservable();
 	}
 
 	get isAdmin() {
-		//this.load();
 		return this.admin.asObservable();
 	}
 
 	get isClient() {
-		//this.load();
 		return this.client.asObservable();
 	}
 
@@ -66,14 +53,12 @@ export class AuthService implements IAuth {
 		}
 		const options = { responseType: 'text' as 'json' };
 		await this.http.post<any>(url, body, options).toPromise().then(token => {
-			// store jwt token in local storage to keep user logged in between page refreshes
 			if (token) {
 				localStorage.setItem(environment.JWT, token);
 				this.loggedIn.next(true);
 				console.log(this.isLoggedIn);
 				this.load();
 			}
-
 		});
 		return this.loggedIn.value;
 	}
@@ -83,11 +68,9 @@ export class AuthService implements IAuth {
 			res => {
 				this.loggedIn.next(true);
 				if (res.error.text === "[ROLE_ADMIN]") {
-					//console.log("ADMIN Login");
 					this.admin.next(true);
 					localStorage.setItem("USER_ROLE", "ADMIN")
 				} else if (res.error.text === "[ROLE_USER]") {
-					//console.log("CLINET Login")
 					this.client.next(true);
 					localStorage.setItem("USER_ROLE", "USER")
 				}
@@ -96,12 +79,9 @@ export class AuthService implements IAuth {
 	}
 
 	logout() {
-		// remove user from local storage to log user out
 		localStorage.removeItem('USER_ROLE');
 		localStorage.removeItem('USER_TOKEN');
-		//this.currentUserSubject.next(new Compt);
 		this.loggedIn.next(false);
-		window.location.reload();
 	}
 
 	async adminSignUp(admin: Admin): Promise<Admin> {

@@ -37,8 +37,11 @@ export class DashboardComponent implements OnInit {
 		this.child.fill(selected);
 	}
 
-	delete(id: number) {
-		this.api.delete("/articles/" + id)
+	async delete(id: number) {
+		if (confirm("Are you sure !!?")) {
+			await this.api.delete("/articles/" + id);
+			window.location.reload();
+		}
 	}
 
 
