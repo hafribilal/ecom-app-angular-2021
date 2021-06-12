@@ -6,26 +6,29 @@
     </div>
 
     <!-- Login Form -->
-    <form [formGroup]="form" (ngSubmit)="submit()">
+    <form [formGroup]="form" class="wrapper" (ngSubmit)="submit()">
 
-      <input formControlName="Loginuser" id="Loginuser" type="text" class="fadeIn second" name="login" placeholder="Enter your Login" [(ngModel)]="username">
+      <mat-form-field appearance="outline">
+        <mat-label>Username</mat-label>
+        <input  matInput formControlName="Loginuser" placeholder="Enter your username" type="text"
+            autocomplete="off" [(ngModel)]="username" required/>
+      </mat-form-field>
 
-      <div *ngIf="f.Loginuser.touched && f.Loginuser.invalid" class="alert alert-danger">
-        <div *ngIf="f.Loginuser.errors != null && f.Loginuser.errors.required"> Login is required
-        </div>
-      </div>
+    
 
-      <input formControlName="passworduser" type="password" id="passworduser" class="fadeIn third" name="password" placeholder="Enter your password" [(ngModel)]="password">
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input matInput formControlName="passworduser" type="password"  
+        name="password" placeholder="Enter your password" [(ngModel)]="password" required/>
+      </mat-form-field>
 
-      <div *ngIf="f.passworduser.touched && f.passworduser.invalid" class="alert alert-danger">
-        <div *ngIf="f.passworduser.errors != null && f.passworduser.errors.required"> Password is required
-        </div>
-      </div>
-
-      <input type="submit" class="fadeIn fourth" value="Sign In">
+      
+      <button mat-raised-button color="primary" type="submit">Log in</button>
 
     </form>
 
 
   </div>
 </div>
+
+

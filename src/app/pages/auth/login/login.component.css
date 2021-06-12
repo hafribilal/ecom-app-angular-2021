@@ -7,6 +7,21 @@ body {
   font-family: "Poppins", sans-serif;
   height: 100vh;
 }
+:host {
+	 height: 100%;
+	 display: flex;
+	 flex-direction: column;
+	 align-items: center;
+	 justify-content: center;
+}
+ .wrapper {
+	 display: flex;
+	 flex-direction: column;
+}
+ .wrapper h1 {
+	 margin-bottom: 1rem;
+}
+ 
 
 a {
   color: #92badd;
@@ -23,6 +38,11 @@ h2 {
   display: inline-block;
   margin: 40px 8px 10px 8px;
   color: #cccccc;
+}
+
+form {
+  margin-top: -50px;
+  margin-bottom: 50px;
 }
 
 /* STRUCTURE */
@@ -45,9 +65,15 @@ h2 {
   max-width: 450px;
   position: relative;
   padding: 0px;
-  -webkit-box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
-  box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0 30px 60px 0 rgba(9, 23, 156, 0.5);
+  box-shadow: 0 30px 60px 0 rgba(9, 23, 156, 0.3);
   text-align: center;
+}
+
+img{
+  transform: scale(50%);
+  margin-top: -90px;
+  
 }
 
 #formFooter {
@@ -69,7 +95,7 @@ h2.active {
   border-bottom: 2px solid #5fbae9;
 }
 
-/* FORM TYPOGRAPHY*/
+/* FORM TYPOGRAPHY
 input[type=button], input[type=submit], input[type=reset] {
   background-color: #56baed;
   border: none;
@@ -133,7 +159,7 @@ input[type=text]:focus, input[type=password]:focus {
 input[type=text]:placeholder, input[type=password]:placeholder {
   color: #cccccc;
 }
-
+*/
 /* ANIMATIONS */
 /* Simple CSS3 Fade-in-down Animation */
 .fadeInDown {

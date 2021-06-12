@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
 import { HttpClientModule } from '@angular/common/http';
 /*import { AngularFontAwesomeModule} from 'angular-font-awesome';*/
 
@@ -23,12 +26,12 @@ import { HeaderComponent } from './Layouts/header/header.component';
 import { FooterComponent } from './Layouts/footer/footer.component';
 import { ProductsListComponent } from './Pages/products-list/products-list.component';
 import { ProductDetailsComponent } from './Pages/product-detail/product-details.component';
-import { AboutComponent } from './Pages/about/about.component';
 import { AdminSignupComponent } from './Pages/auth/admin-signup/admin-signup.component';
 import { ClientSignupComponent } from './Pages/auth/client-signup/client-signup.component';
 import { ForgotPasswordComponent } from './Components/forgot-password/forgot-password.component';
 import { DashboardComponent } from './Pages/dashboard/dashboard.component';
 import { CreateProductComponent } from './Components/create-product/create-product.component';
+import { AboutComponent } from './pages/about/about.component';
 
 
 @NgModule({
@@ -57,6 +60,9 @@ import { CreateProductComponent } from './Components/create-product/create-produ
 		HttpClientModule,
 		AppRoutingModule,
 		BrowserAnimationsModule,
+		MatButtonModule,
+		MatInputModule,
+		MatFormFieldModule
 	],
 	providers: [
 		[{
